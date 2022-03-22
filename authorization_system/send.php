@@ -1,2 +1,2 @@
 <?php
-password_hash('123456', PASSWORD_DEFAULT);
+$fedorUser = password_hash('123456', PASSWORD_DEFAULT);
