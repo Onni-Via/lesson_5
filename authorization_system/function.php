@@ -1,7 +1,5 @@
 <?php
-// Переменные для функций
-$login = htmlspecialchars($_POST['login']);
-$password = htmlspecialchars($_POST['password']);
+include __DIR__ . '/variables.php';
 
 // пусть возвращает массив всех пользователей и хэшей их паролей
 function getUsersList() {
@@ -17,25 +15,18 @@ function existsUser($login) {
 
 //возвращает true тогда, когда существует пользователь с указанным логином и введенный им пароль прошел проверку
 function сheckPassword($login, $password) {
-	if(false != existsUser($login) && password_verify($password, in_array($password, getUsersList()))) {
+	if(false != existsUser($login) && password_verify($password, getUsersList()[$login])) {
 		return true;
 	}
 }
 
 //возвращает либо имя вошедшего на сайт пользователя, либо null
 // весь код не верный ибо я не знаю что творю, но прикладываю свои пыпытки
-function getCurrentUser(){
-    if(сheckPassword($login, $password) == true){
+
+function getCurrentUser() {
+    if(isset($_SESSION['user'])) {
         return $_SESSION['user'];
     } else {
         return null;
     }
 }
-
-/*function getCurrentUser() {
-    if(isset($_SESSION['login'])) {
-        return $_SESSION['login'];
-    } else {
-        return null;
-    }
-}*/

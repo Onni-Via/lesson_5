@@ -12,7 +12,7 @@ include __DIR__ . '/function.php';
 <body>
 <?php 
 if (null !== getCurrentUser()) {
-  echo 'Привет' . getCurrentUser();
+  echo 'Привет ' . getCurrentUser();
 }
 ?>
 </body>

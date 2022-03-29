@@ -6,7 +6,12 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-
+// ЕСЛИ введены данные в форму входа - проверяем им (см. пункт 1.3) и ЕСЛИ проверка прошла, ТО запоминаем информацию о вошедшем пользователе
+if (isset($login) && isset($password)) {
+	if(true == сheckPassword($login, $password)) {
+		$_SESSION['user'] = $login;
+	}
+}
 
 // ЕСЛИ пользователь уже вошел (см. пункт 2), ТО редирект на главную страницу
 if(null !== getCurrentUser()) {
@@ -22,13 +27,3 @@ if(null !== getCurrentUser()) {
 	</form>
 <?php
 } 
-
-// ЕСЛИ введены данные в форму входа - проверяем им (см. пункт 1.3) и ЕСЛИ проверка прошла, ТО запоминаем информацию о вошедшем пользователе
-if (isset($login) && isset($password)) {
-	if(true == сheckPassword($login, $password)) {
-		$login = $_SESSION['user'];
-	}
-}
-
-var_dump($_SESSION);	
-var_dump($_POST);
