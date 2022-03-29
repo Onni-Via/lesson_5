@@ -1,4 +1,5 @@
 <?php
+session_start();
 include __DIR__ . '/function.php';
 
 ?>
@@ -6,12 +7,13 @@ include __DIR__ . '/function.php';
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Вход</title>
+  <title>Личный кабинет</title>
 </head>
 <body>
-<form action="/sprint_f/lesson_5/authorization_system/send.php" method="post" enctype="multipart/form-data"> 
-Логин: <input type="text" name="login">
-Пароль: <input type="password" name="password">
-<button type="submit">Войти</button>
+<?php 
+if (null !== getCurrentUser()) {
+  echo 'Привет' . getCurrentUser();
+}
+?>
 </body>
 </html>
